@@ -24,6 +24,10 @@ html {
 
 body {
   background-image: url(/images/bg-silicon-desert-screenshot.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .text-sd-narration {
