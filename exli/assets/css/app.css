@@ -3,3 +3,46 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+
+@font-face {
+  font-family: 'Prototype';
+  src: url('/fonts/Prototype.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal
+}
+
+@font-face {
+  font-family: 'GentiumAlt';
+  src: url('/fonts/GenAR102.TTF') format('ttf');
+  font-weight: normal;
+  font-style: normal
+}
+
+html {
+	font-family: "Prototype", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+body {
+  background-image: url(/images/bg-silicon-desert-screenshot.jpg);
+}
+
+.text-sd-narration {
+  color: #cccccc
+}
+
+.text-sd-choice {
+  color: #bbdddd
+}
+
+.text-nassau-standard {
+  font-family: 'GentiumAlt';
+  color: #cccccc
+}
+
+.text-computer-green {
+  color: #226622
+}
+
+span {
+	color: #226622;
+}
