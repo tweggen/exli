@@ -5,29 +5,30 @@
 /* This file is for your main application CSS */
 
 @font-face {
-  font-family: 'Prototype';
-  src: url('/fonts/Prototype.ttf') format('ttf');
+  font-family: 'GentiumAlt';
+  src: url('/fonts/GenAR102.ttf') format('truetype');
   font-weight: normal;
-  font-style: normal
+  font-style: normal;
 }
 
 @font-face {
-  font-family: 'GentiumAlt';
-  src: url('/fonts/GenAR102.TTF') format('ttf');
+  font-family: 'Prototype';
+  src: url('/fonts/Prototype.ttf') format('truetype');
   font-weight: normal;
-  font-style: normal
+  font-style: normal;
 }
 
 html {
-	font-family: "Prototype", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	font-family: 'Prototype', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 body {
-  background-image: url(/images/bg-silicon-desert-screenshot.jpg);
+  background: url(/images/bg-silicon-desert-screenshot.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+
 }
 
 .text-sd-narration {
@@ -44,6 +45,7 @@ body {
 }
 
 .text-computer-green {
+  font-family: 'Prototype';
   color: #226622
 }
 

@@ -25,7 +25,7 @@ config :exli, ExliWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "OQ3dux5tDl169JOteZgIGyGJID/BEgQuE0thPMK+8RsiCVE1waHFP6aUOk6Buzzz",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:exli, ~w(--sourcemap=inline --watch)]},
+    esbuild: {Esbuild, :install_and_run, [:exli, ~w(--sourcemap=inline --watch --loader:.ttf=file)]},
     tailwind: {Tailwind, :install_and_run, [:exli, ~w(--watch)]}
   ]
 

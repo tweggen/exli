@@ -78,7 +78,7 @@ defmodule Exli.MixProject do
       "assets.build": ["tailwind exli", "esbuild exli"],
       "assets.deploy": [
         "tailwind exli --minify",
-        "esbuild exli --minify",
+        "esbuild exli --minify --loader:.ttf=file",
         "phx.digest"
       ]
     ]
