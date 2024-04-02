@@ -43,6 +43,14 @@ body {
   color: #eeeeee
 }
 
+.link-sd-dark {
+  color: #666666
+}
+
+.link-sd-dark:hover {
+  color: #888888
+}
+
 .text-sd-choice {
   color: #bbdddd
 }
@@ -55,6 +63,16 @@ body {
 .text-computer-green {
   font-family: 'Prototype';
   color: #226622
+}
+
+.link-computer-green {
+  font-family: 'Prototype';
+  color: #226622
+}
+
+.link-computer-hover {
+  font-family: 'Prototype';
+  color: #448844
 }
 
 span {
