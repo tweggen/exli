@@ -35,6 +35,14 @@ body {
   color: #cccccc
 }
 
+.link-sd-narration {
+  color: #cccccc
+}
+
+.link-sd-narration:hover {
+  color: #eeeeee
+}
+
 .text-sd-choice {
   color: #bbdddd
 }
