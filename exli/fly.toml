@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for exli on 2024-04-01T08:04:03+02:00
+# fly.toml app configuration file generated for exli on 2024-04-02T06:39:05+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -6,8 +6,6 @@
 app = 'exli'
 primary_region = 'ams'
 kill_signal = 'SIGTERM'
-
-[build]
 
 [deploy]
   release_command = '/app/bin/migrate'
@@ -30,6 +28,6 @@ kill_signal = 'SIGTERM'
     soft_limit = 1000
 
 [[vm]]
-  memory = '1gb'
+  memory = '256mb'
   cpu_kind = 'shared'
   cpus = 1

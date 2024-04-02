@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for exli-db on 2024-04-01T12:54:05+02:00
+# fly.toml app configuration file generated for exli-db on 2024-04-02T06:30:26+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -8,6 +8,7 @@ primary_region = 'ams'
 
 [env]
   PRIMARY_REGION = 'ams'
+  FLY_SCALE_TO_ZERO = "1h"
 
 [[mounts]]
   source = 'pg_data'

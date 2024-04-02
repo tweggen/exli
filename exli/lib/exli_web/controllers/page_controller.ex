@@ -6,4 +6,8 @@ defmodule ExliWeb.PageController do
     # so skip the default app layout.
     render(conn, :home, layout: false)
   end
+
+  def imprint(conn, _params) do
+    render(conn, :imprint)
+  end
 end
