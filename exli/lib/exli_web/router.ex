@@ -29,6 +29,7 @@ defmodule ExliWeb.Router do
     pipe_through :api
 
     get "/random", RandomController, :index
+    post "/random", RandomController, :index
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
