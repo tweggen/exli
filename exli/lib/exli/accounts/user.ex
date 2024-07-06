@@ -8,6 +8,8 @@ defmodule Exli.Accounts.User do
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
 
+    has_many :saved_games, Save, foreign_key: :user_id
+
     timestamps(type: :utc_datetime)
   end
 

@@ -1,9 +1,9 @@
-defmodule Exli.Accounts.Saves do  
+defmodule Exli.Accounts.Save do  
   use Ecto.Schema
   alias Exli.Accounts.Game
   alias Exli.Accounts.User
 
-  schema "saves" do
+  schema "save" do
     field :gamedata, :string
 
     belongs_to :game, Game, foreign_key: :game_id

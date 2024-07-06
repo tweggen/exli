@@ -6,7 +6,7 @@ defmodule Exli.Accounts do
   import Ecto.Query, warn: false
   alias Exli.Repo
 
-  alias Exli.Accounts.{User, UserToken, UserNotifier}
+  alias Exli.Accounts.{User, UserToken, UserNotifier, Game}
 
   ## Database getters
 
@@ -348,6 +348,24 @@ defmodule Exli.Accounts do
     |> case do
       {:ok, %{user: user}} -> {:ok, user}
       {:error, :user, changeset, _} -> {:error, changeset}
+    end
+  end
+
+
+  def add_game(attrs) do
+    Game.create_changeset(attrs)
+    |> Repo.insert()
+  end
+
+
+  def find_game(name) do
+    case Repo.get_by(Game, name: name) do
+      nil ->
+        # Game does not exist, create it.
+        add_game(%Game{name: name})
+
+      entity ->
+        entity
     end
   end
 end
