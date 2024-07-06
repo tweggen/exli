@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :exli, Exli.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "admin",
   hostname: "localhost",
   database: "exli_dev",
   stacktrace: true,
