@@ -16,8 +16,8 @@ defmodule Exli.Repo.Migrations.CreateSavegames do
       timestamps(type: :utc_datetime)
     end
 
-    create index(:games, [:game_id])
-    create index(:games, [:user_id])
+    create index(:saves, [:game_id])
+    create index(:saves, [:user_id])
 
   end
 end
