@@ -13,7 +13,6 @@ config :exli,
 
 # Configures the endpoint
 config :exli, ExliWeb.Endpoint,
-  url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
     formats: [html: ExliWeb.ErrorHTML, json: ExliWeb.ErrorJSON],

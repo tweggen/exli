@@ -372,7 +372,7 @@ defmodule Exli.Accounts do
 
   def add_save(user, save_attrs) do
     user
-    |> Ecto.build_assoc(:saved_games, attrs)
+    |> Ecto.build_assoc(:saved_games, save_attrs)
     |> Repo.insert()
   end
 
