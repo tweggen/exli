@@ -8,7 +8,7 @@ defmodule Exli.Accounts.UserNotifier do
     email =
       new()
       |> to(recipient)
-      |> from({"Exli", "contact@example.com"})
+      |> from({"silicondesert MCP", "mcp@silicondesert.io"})
       |> subject(subject)
       |> text_body(body)
 

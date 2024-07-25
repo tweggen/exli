@@ -104,7 +104,7 @@ if config_env() == :prod do
   # are not using SMTP. Here is an example of the configuration:
   #
   config :exli, Exli.Mailer,
-    adapter: Swoosh.Adapters.Mailgun,
+    adapter: Swoosh.Adapters.Sendgrid,
     api_key: {:system, "SENDGRID_API_KEY"}
     #domain: System.get_env("MAILGUN_DOMAIN")
   
