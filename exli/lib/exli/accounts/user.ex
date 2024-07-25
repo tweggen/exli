@@ -1,6 +1,7 @@
 defmodule Exli.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Exli.Accounts.Save
 
   schema "users" do
     field :email, :string
