@@ -30,6 +30,8 @@ defmodule ExliWeb.Router do
 
     get "/random", RandomController, :index
     post "/random", RandomController, :index
+
+    post "/users/log_in", ApiUserController, :create
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
