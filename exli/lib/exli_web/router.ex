@@ -28,10 +28,16 @@ defmodule ExliWeb.Router do
   scope "/api", ExliWeb do
     pipe_through :api
 
-    get "/random", RandomController, :index
-    post "/random", RandomController, :index
+    scope "/public" do
+      post "/users/log_in", ApiUserController, :create
+    end
 
-    post "/users/log_in", ApiUserController, :create
+    scope "/auth" do
+      pipe_through ExliWeb.Controllers.ApiUserPlug
+
+      get "/random", RandomController, :index
+      post "/random", RandomController, :index
+    end
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
