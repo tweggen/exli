@@ -6,6 +6,8 @@ defmodule ExliWeb.SaveGameController do
   def create(conn, %{"game" => %{"title" => game_title}, "gamedata" => gamedata} = _params) do
     user = conn.assigns.api_user
     game = Accounts.find_game(game_title)
+    IO.inspect(game)
+    #{:ok, game} = res
     now = NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)
     Accounts.add_save(user, %{
       :gamedata => gamedata,

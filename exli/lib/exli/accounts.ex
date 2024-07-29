@@ -359,14 +359,11 @@ defmodule Exli.Accounts do
 
 
   def find_game(name) do
-    case Repo.get_by(Game, name: name) do
-      nil ->
-        # Game does not exist, create it.
-        add_game(%{name: name})
-
-      entity ->
-        entity
-    end
+    Repo.insert!(
+      %Game{name: name},
+      on_conflict: [set: [name: name]],
+      conflict_target: :name
+    )
   end
 
 
