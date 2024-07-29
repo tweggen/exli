@@ -35,6 +35,9 @@ defmodule ExliWeb.Router do
     scope "/auth" do
       pipe_through ExliWeb.Controllers.ApiUserPlug
 
+      get "/save_game", SaveGameController, :index
+      post "/save_game", SaveGameController, :create
+
       get "/random", RandomController, :index
       post "/random", RandomController, :index
     end

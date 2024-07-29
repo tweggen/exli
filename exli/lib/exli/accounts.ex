@@ -6,7 +6,7 @@ defmodule Exli.Accounts do
   import Ecto.Query, warn: false
   alias Exli.Repo
 
-  alias Exli.Accounts.{User, UserToken, UserNotifier, Game}
+  alias Exli.Accounts.{User, UserToken, UserNotifier, Game, Save}
 
   ## Database getters
 
@@ -362,7 +362,7 @@ defmodule Exli.Accounts do
     case Repo.get_by(Game, name: name) do
       nil ->
         # Game does not exist, create it.
-        add_game(%Game{name: name})
+        add_game(%{name: name})
 
       entity ->
         entity
@@ -377,4 +377,11 @@ defmodule Exli.Accounts do
   end
 
 
+  def latest_save(user, game) do
+    Save
+      |> where([a], a.user_id == ^user.id)
+      |> where([b], b.game_id == ^game.id)
+      |> first(desc: :stored_at)
+      |> Repo.one
+  end
 end

@@ -2,16 +2,27 @@ defmodule ExliWeb.SaveGameController do
   use ExliWeb, :controller
   alias Exli.Accounts
 
-  def index(conn, _params) do
-    [token64] = get_req_header(conn, "x-nassau-token")
-    IO.inspect("Reading token header ")
-    IO.inspect(token64)
-    {_, token} = Base.url_decode64(token64, padding: false)
-    user = Accounts.get_user_by_session_token(token)
-    if nil==user do
-      send_resp(conn, 403, "I'm sorry, I don't remember you. Would you mind to login again, obtaining a fresh token?")
-    else
-      send_resp(conn, 200, "Exli all for #{user.email}!")
-    end
+
+  def create(conn, %{"game" => %{"title" => game_title}, "gamedata" => gamedata} = _params) do
+    user = conn.assigns.api_user
+    game = Accounts.find_game(game_title)
+    now = NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)
+    Accounts.add_save(user, %{
+      :gamedata => gamedata,
+      :confirmed_at => now,
+      :game_id => game.id,
+      :user_id => user.id
+    })
+    conn
+    |> send_resp(200, "Hi #{user.email}, I stored your exli.")
+  end
+
+
+  def index(conn, %{"game" => %{"title" => game_title}} = _params) do
+    user = conn.assigns.api_user
+    game = Accounts.find_game(game_title)
+    save = Accounts.latest_save(user, game)
+    conn
+    |> send_resp(200, %{save: save})
   end
 end
