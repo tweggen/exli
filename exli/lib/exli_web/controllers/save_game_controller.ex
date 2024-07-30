@@ -24,8 +24,13 @@ defmodule ExliWeb.SaveGameController do
     user = conn.assigns.api_user
     game = Accounts.find_game(conn.query_params["gameTitle"])
     save = Accounts.latest_save(user, game)
-    conn
-    |> put_status(200)
-    |> json(%{:gamedata => save.gamedata, :storedAt => save.stored_at})
+    if nil == save do
+      conn
+      |> send_resp(404, "Hi #{user.email}, I'm afraid you didn't save any game yet.")
+    else
+      conn
+      |> put_status(200)
+      |> json(%{:save => %{:gamedata => save.gamedata, :storedAt => save.stored_at}})
+    end
   end
 end
