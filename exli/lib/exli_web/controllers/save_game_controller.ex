@@ -20,11 +20,12 @@ defmodule ExliWeb.SaveGameController do
   end
 
 
-  def index(conn, %{"game" => %{"title" => game_title}} = _params) do
+  def index(conn, params) do
     user = conn.assigns.api_user
-    game = Accounts.find_game(game_title)
+    game = Accounts.find_game(conn.query_params["gameTitle"])
     save = Accounts.latest_save(user, game)
     conn
-    |> send_resp(200, %{save: save})
+    |> put_status(200)
+    |> json(%{:gamedata => save.gamedata, :storedAt => save.stored_at})
   end
 end
