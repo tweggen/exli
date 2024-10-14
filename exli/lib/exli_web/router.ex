@@ -38,6 +38,8 @@ defmodule ExliWeb.Router do
       get "/save_game", SaveGameController, :index
       post "/save_game", SaveGameController, :create
 
+      get "/saves", SavesController, :index
+
       get "/random", RandomController, :index
       post "/random", RandomController, :index
     end

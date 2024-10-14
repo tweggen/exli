@@ -381,4 +381,13 @@ defmodule Exli.Accounts do
       |> first(desc: :stored_at)
       |> Repo.one
   end
+
+
+  def all_saves(user, game) do
+    Save
+      |> where([a], a.user_id == ^user.id)
+      |> where([b], b.game_id == ^game.id)
+      |> order_by(desc: :stored_at)
+      |> Repo.all
+  end
 end
