@@ -7,6 +7,10 @@ defmodule ExliWeb.PageController do
     game = Accounts.find_game("silicondesert2")
     #Accounts.find_game(conn.query_params["gameTitle"])
     latest_save = Accounts.latest_save(user, game)
+    gamedata = Jason.decode!(latest_save.gamedata)
+    entities = Jason.decode!(gamedata["Entities"])
+    story = Jason.decode!(gamedata["Story"])
+    pure_gamedata = gamedata |> Map.delete("Entities") |> Map.delete("Story")
     if nil == latest_save do
       conn
       |> send_resp(404, "Hi #{user.email}, I'm afraid you didn't save any game yet.")
@@ -14,9 +18,11 @@ defmodule ExliWeb.PageController do
       conn
       |> put_status(200)
       |> json(%{
-          :save => %{
-            :gamedata => latest_save.gamedata, 
-            :storedAt => latest_save.stored_at
+          :sdsave => %{
+            :stored_at => latest_save.stored_at,
+            :gamedata => pure_gamedata,
+            :story => story,
+            :entities => entities
           }
         }
       )
