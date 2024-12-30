@@ -11,7 +11,7 @@ defmodule ExliWeb.SaveGameController do
     now = NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)
     Accounts.add_save(user, %{
       :gamedata => gamedata,
-      :confirmed_at => now,
+      :stored_at => now,
       :game_id => game.id,
       :user_id => user.id
     })
