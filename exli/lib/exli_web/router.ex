@@ -22,6 +22,7 @@ defmodule ExliWeb.Router do
 
     get "/", PageController, :home
     get "/imprint", PageController, :imprint
+    get "/sdsave", PageController, :sdsave
   end
 
   # Other scopes may use custom stacks.
