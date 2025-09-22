@@ -98,4 +98,4 @@ USER nobody
 
 RUN cat /app/bin/server
 
-CMD ["/app/bin/exli"]
+CMD ["sh", "-c", "/app/bin/exli eval Exli.Release.migrate && /app/bin/exli start"]
