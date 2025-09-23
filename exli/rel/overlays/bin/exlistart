@@ -1,0 +1,7 @@
+#!/bin/sh
+set -eu
+
+cd -P -- "$(dirname -- "$0")"
+./exli eval Exli.Release.migrate
+
+PHX_SERVER=true exec ./exli start
