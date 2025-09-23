@@ -87,8 +87,6 @@ ENV MIX_ENV="prod"
 # Only copy the final release from the build stage
 COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/exli ./
 
-RUN find /app -ls
-
 USER nobody
 
 # If using an environment that doesn't automatically reap zombie processes, it is
@@ -96,6 +94,4 @@ USER nobody
 # above and adding an entrypoint. See https://github.com/krallin/tini for details
 # ENTRYPOINT ["/tini", "--"]
 
-RUN cat /app/bin/server
-
-CMD ["sh", "-c", "/app/bin/exlistart"]
+CMD ["sh", "-c", "sh /app/bin/migrate && sh /app/bin/server"]
