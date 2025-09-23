@@ -98,4 +98,4 @@ USER nobody
 
 RUN cat /app/bin/server
 
-CMD ["sh", "-c", "/app/bin/migrate && sh /app/bin/server"]
+CMD ["sh", "-c", "/app/bin/exlistart"]
