@@ -8,10 +8,15 @@ config :pbkdf2_elixir, :rounds, 1
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
+#
+# Host, port, user and password can be overridden from the environment
+# (test-local.sh uses this to run against a throwaway container); the
+# defaults are the generator's.
 config :exli, Exli.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
+  username: System.get_env("EXLI_TEST_DB_USER", "postgres"),
+  password: System.get_env("EXLI_TEST_DB_PASSWORD", "postgres"),
+  hostname: System.get_env("EXLI_TEST_DB_HOST", "localhost"),
+  port: String.to_integer(System.get_env("EXLI_TEST_DB_PORT", "5432")),
   database: "exli_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: System.schedulers_online() * 2
