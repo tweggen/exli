@@ -6,8 +6,8 @@ game and its online saves. The Phoenix app is in `exli/`.
 
 **Production is deployed by Coolify from this repository's `main` branch
 (Dockerfile mode). A push to `main` ships: work on a branch and merge through
-a pull request.** `exli/fly.toml` and `exli/start-server.sh` are from an
-earlier Fly.io setup and are not used.
+a pull request.** Coolify has no health check configured, so the site answers
+503 while a new image builds; check https://silicondesert.io after a merge.
 
 ## Testing locally
 
