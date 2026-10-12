@@ -1,11 +1,16 @@
 import Config
 
 # Configure your database
+#
+# Host, port, user, password and database can be overridden from the
+# environment (dev-local.sh uses this to run against a throwaway
+# container); the defaults are the previous fixed values.
 config :exli, Exli.Repo,
-  username: "postgres",
-  password: "admin",
-  hostname: "localhost",
-  database: "exli_dev",
+  username: System.get_env("EXLI_DEV_DB_USER", "postgres"),
+  password: System.get_env("EXLI_DEV_DB_PASSWORD", "admin"),
+  hostname: System.get_env("EXLI_DEV_DB_HOST", "localhost"),
+  port: String.to_integer(System.get_env("EXLI_DEV_DB_PORT", "5432")),
+  database: System.get_env("EXLI_DEV_DB_NAME", "exli_dev"),
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

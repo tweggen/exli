@@ -1,0 +1,11 @@
+# The toolchain test-local.sh and dev-local.sh run mix in: the same
+# Elixir/OTP as the production build (exli/Dockerfile), plus git, which
+# mix needs to fetch the heroicons dependency. Debian is bookworm, not the
+# production bullseye: bullseye's security packages have left
+# deb.debian.org, so apt-get on bullseye fails.
+ARG ELIXIR_VERSION=1.16.1
+ARG OTP_VERSION=26.2.2
+ARG DEBIAN_VERSION=bookworm-20240130-slim
+FROM hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}
+RUN apt-get update -y && apt-get install -y git build-essential inotify-tools \
+    && apt-get clean && rm -f /var/lib/apt/lists/*_*

@@ -1,0 +1,3 @@
+
+# Local harness (test-local.sh, dev-local.sh): deps, builds, Hex cache
+/.local-cache/
