@@ -1,5 +1,5 @@
 Options +FollowSymLinks
 RewriteEngine on
 RewriteRule ^$ index.html
-RewriteRule ^index.html$ http://exli.fly.dev/ [R,L]
+RewriteRule ^index.html$ https://silicondesert.io/ [R,L]
 

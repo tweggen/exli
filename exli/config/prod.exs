@@ -10,9 +10,7 @@ config :exli, ExliWeb.Endpoint,
 	url: [host: "silicondesert.io"],
 	check_origin: [
 		"https://silicondesert.io",
-		"//silicondesert.io", 
-		"https://exli.fly.dev",
-		"//exli.fly.dev",
+		"//silicondesert.io",
 		"//localhost"
 	]
 
