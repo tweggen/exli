@@ -40,12 +40,24 @@ A run may rewrite the heroicons entry in `exli/mix.lock` (dropping
 
 ## The game's API
 
-| Call | Answer today |
-|------|--------------|
-| `POST /api/public/users/log_in` `{"user": {"email", "password"}}` | 200 `{"token": …}`; a wrong login is also **200**, plain text "I'm sorry, I do not recognize you." |
-| `GET /api/auth/save_game?gameTitle=…` (header `x-nassau-token`) | 200 `{"save": {"gamedata", "storedAt"}}`; 404 text when there is no save |
-| `POST /api/auth/save_game` `{"game": {"title"}, "gamedata"}` | 200 text |
-| any `/api/auth/*` with an unknown token | 403 text; a token that is not base64 gives 500 |
+Karawan's `nogame.modules.AutoSave` is the client. It quotes the `"error"`
+text of a JSON answer on its login screen, and it depends on the statuses
+below, so change them only together with the client (Karawan
+`docs/main/docs/persistence/GAME_SERVER_API.md` has the client's side).
+Tests: `test/exli_web/controllers/api_test.exs`.
 
-These error answers are being reworked (Karawan KAR-423,
-`docs/main/plans/proposed/LOGIN-SERVER-ERRORS.md`).
+| Call | Answer |
+|------|--------|
+| `POST /api/public/users/log_in` `{"user": {"email", "password"}}` | 200 `{"token": "<url-safe base64>"}` |
+| same, wrong password or unknown eMail | **401** `{"error": "I'm sorry, I do not recognize you."}` |
+| same, `user.email`/`user.password` missing or not strings | **400** `{"error": "expected user.email and user.password"}` |
+| `GET /api/auth/save_game?gameTitle=…` | 200 `{"save": {"gamedata", "storedAt"}}` |
+| same, no save yet | **404** `{"error": "no saved game yet"}` — the game starts a new game on exactly this answer |
+| same, `gameTitle` missing or empty | **400** `{"error": "gameTitle is required"}` |
+| `POST /api/auth/save_game` `{"game": {"title"}, "gamedata"}` | 200 text |
+| same, title or gamedata missing or not strings | **400** `{"error": "expected game.title and gamedata"}` |
+| same, the save is not stored | **500** `{"error": "could not store the save game"}` |
+| any `/api/auth/*`: `x-nassau-token` missing, duplicated, not base64, unknown, or older than 60 days | **403** `{"error": "I'm sorry, I don't remember you. Please log in again."}` — the game drops its token and logs in again |
+
+Any other exception renders through `ErrorJSON` in production
+(`{"errors": {"detail": "<status text>"}}`).
